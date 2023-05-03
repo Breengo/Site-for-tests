@@ -7,7 +7,9 @@ const TestBox = () => {
     <Link to={`/test_details/${4}`}>
       <ul className="grid grid-cols-4 w-full text-center border-b border-b-neutral-800 py-4 hover:bg-neutral-700 cursor-pointer transition-all">
         {array.map((item, index) => (
-          <li className={"text-white text-xl"}>{item}</li>
+          <li key={index} className={"text-white text-xl"}>
+            {item}
+          </li>
         ))}
       </ul>
     </Link>

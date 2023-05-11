@@ -14,7 +14,10 @@ class TestController {
   }
   async getTest(req, res) {
     const { id } = req.query;
-    const test = await Test.findOne({ where: { id } });
+    const test = await Test.findOne({
+      where: { id },
+      include: [{ model: User, attributes: ["login"] }],
+    });
     return res.status(200).json(test);
   }
 }

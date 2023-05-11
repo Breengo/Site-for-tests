@@ -15,7 +15,7 @@ const Registration = () => {
       .post("/user/registration", { password, login, isStaff: false })
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        dispatch(loginAction(res.data.dataValues));
+        dispatch(loginAction(res.data));
       });
   };
 

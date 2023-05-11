@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
+import { ITestData } from "../pages/Home";
 
 const array = ["Test 1", "Math", "Teacher", "50%"];
 
-const TestBox = () => {
+interface IProps {
+  props: ITestData;
+}
+
+const TestBox: React.FC<IProps> = ({ props }) => {
   return (
-    <Link to={`/test_details/${4}`}>
-      <ul className="grid grid-cols-4 w-full text-center border-b border-b-neutral-800 py-4 hover:bg-neutral-700 cursor-pointer transition-all">
-        {array.map((item, index) => (
-          <li key={index} className={"text-white text-xl"}>
-            {item}
-          </li>
-        ))}
+    <Link to={`/test_details/${props.id}`}>
+      <ul className="grid grid-cols-3 w-full text-center border-b border-b-neutral-800 py-4 hover:bg-neutral-700 cursor-pointer transition-all">
+        <li className={"text-white text-xl"}>{props.title}</li>
+        <li className={"text-white text-xl"}>{props.subject}</li>
+        <li className={"text-white text-xl"}>{props.user.login}</li>
       </ul>
     </Link>
   );

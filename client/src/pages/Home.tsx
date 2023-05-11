@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { logout } from "../redux/slices/authSlice";
 import axios from "../axios";
 
-const array = ["Title", "Subject", "Creator", "Result"];
+const array = ["Title", "Subject", "Creator"];
 
 interface IQuestionData {
   title: string;
@@ -15,11 +15,16 @@ interface IQuestionData {
   variants: string[];
 }
 
+export interface IUserData {
+  login: string;
+}
+
 export interface ITestData {
   id: number;
   title: string;
   subject: string;
   questions: IQuestionData[];
+  user: IUserData;
 }
 
 const Home = () => {
@@ -62,7 +67,7 @@ const Home = () => {
         )}
       </div>
       <div className="w-5/12 border border-neutral-800 flex flex-col rounded-md overflow-y-scroll scrollbar-hide h-3/6 relative">
-        <ul className="grid grid-cols-4 w-full text-center py-3 sticky bg-neutral-800 top-0 left-0">
+        <ul className="grid grid-cols-3 w-full text-center py-3 sticky bg-neutral-800 top-0 left-0">
           {array.map((item, index) => (
             <li key={index} className={"text-white text-2xl font-bold"}>
               {item}
@@ -70,7 +75,7 @@ const Home = () => {
           ))}
         </ul>
         {testList.map((item) => (
-          <TestBox key={item.id} />
+          <TestBox props={item} key={item.id} />
         ))}
       </div>
     </div>
